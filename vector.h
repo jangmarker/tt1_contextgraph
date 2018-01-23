@@ -1,0 +1,19 @@
+#ifndef TT1_CONTEXTGRAPH_VECTOR_H
+#define TT1_CONTEXTGRAPH_VECTOR_H
+
+#include <string>
+#include <vector>
+
+using Word = std::string;
+
+struct Vector {
+    explicit Vector(std::size_t valueCount);
+
+    Word word;
+    std::vector<double> values;
+    double euclideanNorm; // TODO calculate when setting values
+};
+
+bool operator==(const Vector& lhs, const Vector& rhs);
+
+#endif //TT1_CONTEXTGRAPH_VECTOR_H

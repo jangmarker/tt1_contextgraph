@@ -1,0 +1,23 @@
+image: Visual Studio 2017
+
+install:
+  - ps: Set-Culture de-DE
+
+build_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+
+test_script:
+  - ctest -C Debug
+
+on_finish:
+  # required for failed tests
+  - appveyor PushArtifact tst_database-junit.xml
+
+artifacts:
+  - path: 'build\Debug\*tt1*.exe'
+    name: executables
+  - path: 'build\*-junit.xml'
+    name: test results
