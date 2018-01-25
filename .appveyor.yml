@@ -14,10 +14,9 @@ test_script:
 
 on_finish:
   # required for failed tests
+  - appveyor PushArtifact tst_file_access-junit.xml
   - appveyor PushArtifact tst_database-junit.xml
 
 artifacts:
   - path: 'build\Debug\*tt1*.exe'
     name: executables
-  - path: 'build\*-junit.xml'
-    name: test results

@@ -11,7 +11,7 @@ struct Vector {
 
     Word word;
     std::vector<double> values;
-    double euclideanNorm; // TODO calculate when setting values
+    double euclideanNorm;
 };
 
 bool operator==(const Vector& lhs, const Vector& rhs);

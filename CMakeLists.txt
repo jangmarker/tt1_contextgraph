@@ -45,5 +45,6 @@ function(create_test NAME)
 endfunction(create_test)
 
 enable_testing()
+create_test(file_access)
 create_test(database)
 # NOTE don't forget to add command to .appveyor.yml

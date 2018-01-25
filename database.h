@@ -11,6 +11,7 @@ class Database
 {
 public:
     void set_vectors(std::vector<Vector>&& vectors);
+    const std::vector<Vector>& vectors() const;
 
     std::vector<Word> most_similar(Word word, size_t topCount);
 

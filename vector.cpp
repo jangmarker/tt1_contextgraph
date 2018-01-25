@@ -2,7 +2,7 @@
 
 Vector::Vector(std::size_t valueCount)
 {
-    values.reserve(valueCount);
+    values.resize(valueCount);
 }
 
 bool operator==(const Vector& lhs, const Vector& rhs)

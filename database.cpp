@@ -15,17 +15,17 @@ namespace
     std::multimap<double, Word> compare_to_vectors(const Vector& searchVector,
                                                    const std::vector<Vector>& vectors)
     {
-        std::multimap<double, Word> words_increasing_sim;
+        std::multimap<double, Word> wordsByIncSim;
 
         for (const auto& otherVector : vectors) {
             if (otherVector == searchVector) {
                 continue;
             }
 
-            words_increasing_sim.emplace(similarity(searchVector, otherVector),
-                                         otherVector.word);
+            wordsByIncSim.emplace(similarity(searchVector, otherVector),
+                                  otherVector.word);
         }
-        return words_increasing_sim;
+        return wordsByIncSim;
     }
 
     template<typename KeyT, typename ValueT>
@@ -35,7 +35,7 @@ namespace
         result.reserve(topCount);
         for (auto cur = values.crbegin();
              topCount > 0 && cur != values.crend();
-             --topCount) {
+             --topCount, ++cur) {
             result.push_back(cur->second);
         }
         return result;
@@ -45,6 +45,7 @@ namespace
 void Database::set_vectors(std::vector<Vector>&& vectors)
 {
     m_vectors = std::move(vectors);
+    m_nameToVec.clear();
     for (auto& vector : m_vectors) {
         m_nameToVec.emplace(vector.word, &vector);
     }
@@ -58,5 +59,10 @@ std::vector<Word> Database::most_similar(Word word, size_t topCount)
     auto searchVector = m_nameToVec[word];
     auto wordsByIncSim = compare_to_vectors(*searchVector, m_vectors);
     return pick_top(wordsByIncSim, topCount);
+}
+
+const std::vector<Vector>& Database::vectors() const
+{
+    return m_vectors;
 }
 
