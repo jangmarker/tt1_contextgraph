@@ -24,7 +24,7 @@ Database make_database_3()
     Vector vec3 = make_vector("archer", {8, 9});
 
     Database db;
-    db.set_vectors(std::vector{vec1, vec2, vec3});
+    db.set_vectors(std::vector<Vector>{vec1, vec2, vec3});
 
     return db;
 }
