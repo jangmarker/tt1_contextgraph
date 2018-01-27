@@ -51,12 +51,12 @@ void Database::set_vectors(std::vector<Vector>&& vectors)
     }
 }
 
-std::vector<Word> Database::most_similar(Word word, size_t topCount)
+std::vector<Word> Database::most_similar(Word word, size_t topCount) const
 {
     if (m_nameToVec.find(word) == m_nameToVec.end())
         return {};
 
-    auto searchVector = m_nameToVec[word];
+    auto searchVector = m_nameToVec.at(word);
     auto wordsByIncSim = compare_to_vectors(*searchVector, m_vectors);
     return pick_top(wordsByIncSim, topCount);
 }

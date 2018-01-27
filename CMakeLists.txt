@@ -22,7 +22,7 @@ if (DEFINED ENV{TRAVIS})
     set(CMAKE_BUILD_TYPE "DEBUG")
 endif()
 
-set(SOURCE_FILES database.h database.cpp file_access.cpp file_access.h vector.cpp vector.h)
+set(SOURCE_FILES database.h database.cpp file_access.cpp file_access.h vector.cpp vector.h search.cpp search.h)
 add_library(libtt1_contextgraph ${SOURCE_FILES})
 
 add_executable(tt1_contextgraph main.cpp 3rdparty/CLI11.hpp)
@@ -32,7 +32,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     target_link_libraries(tt1_contextgraph -lstdc++fs)
 endif()
 
-set(TEST_FILES 3rdparty/catch.hpp)
+set(TEST_FILES 3rdparty/catch.hpp helper_tst.h helper_tst.cpp)
 add_library(libtt1_contextgraph_test ${TEST_FILES} main_tst.cpp)
 
 function(create_test NAME)
@@ -47,4 +47,5 @@ endfunction(create_test)
 enable_testing()
 create_test(file_access)
 create_test(database)
+create_test(search)
 # NOTE don't forget to add command to .appveyor.yml
