@@ -46,7 +46,7 @@ wer 0.0 0.1 0.2
 
     REQUIRE(db.vectors().size() == 4);
     REQUIRE(db.vectors()[0].word == "der");
-    REQUIRE(db.vectors()[0].values == std::vector{0.1, 0.2, 0.3});
+    REQUIRE(db.vectors()[0].values == std::vector<double>{0.1, 0.2, 0.3});
     REQUIRE(db.vectors()[3].word == "wer");
-    REQUIRE(db.vectors()[3].values == std::vector{0.0, 0.1, 0.2});
+    REQUIRE(db.vectors()[3].values == std::vector<double>{0.0, 0.1, 0.2});
 }
