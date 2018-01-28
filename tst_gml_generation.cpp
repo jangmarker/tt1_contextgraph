@@ -4,7 +4,7 @@
 
 #include "gml_generation.h"
 
-constexpr std::string_view onlyRootGml =
+static const std::string_view onlyRootGml =
 R"(graph [
   directed 0
   node [
@@ -14,7 +14,7 @@ R"(graph [
 ]
 )";
 
-constexpr std::string_view rootTwoNeighborsGml =
+static const std::string_view rootTwoNeighborsGml =
 R"(graph [
   directed 0
   node [
@@ -40,7 +40,7 @@ R"(graph [
 ]
 )";
 
-constexpr std::string_view twoNeighborsDepth2Gml =
+static const std::string_view twoNeighborsDepth2Gml =
 R"(graph [
   directed 0
   node [
