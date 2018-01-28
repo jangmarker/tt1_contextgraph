@@ -2,6 +2,7 @@
 
 #include <set>
 #include <stack>
+#include <string_view>
 
 namespace {
     using namespace gml_generation;
