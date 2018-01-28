@@ -1,6 +1,8 @@
 #include "helper_tst.h"
 
 #include <cmath>
+#include <sstream>
+#include <iterator>
 
 Vector make_vector(std::string_view word, std::initializer_list<double> values)
 {
@@ -27,4 +29,17 @@ Database make_database_3()
     db.set_vectors(std::vector<Vector>{vec1, vec2, vec3});
 
     return db;
+}
+
+void append_neighbor(search::Neighbors* neighbors)
+{ }
+
+search::SearchResultPtr make_searchresult(std::string_view name, search::Neighbors&& neighbors)
+{
+    return std::make_unique<search::SearchResult>(name, std::move(neighbors));
+}
+
+std::string read(std::stringstream& stream)
+{
+    return std::string{std::istreambuf_iterator<char>(stream), {}};
 }
