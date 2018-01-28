@@ -1,4 +1,7 @@
+#include "cli.h"
 
-int main() {
-    // TODO impl
+#include <iostream>
+
+int main(int argc, char** argv) {
+    return cli(argc, argv, std::cout);
 }

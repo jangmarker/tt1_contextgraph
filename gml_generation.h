@@ -4,6 +4,7 @@
 #include "search.h"
 
 #include <ostream>
+#include <experimental/filesystem>
 
 namespace gml_generation
 {
@@ -22,6 +23,8 @@ namespace gml_generation
     std::ostream& operator<<(std::ostream& stream, search::SearchResultPtr& root);
     std::ostream& operator<<(std::ostream& stream, const Edge& edge);
     std::ostream& operator<<(std::ostream& stream, const Node& node);
+
+    void writeToFile(const std::experimental::filesystem::path& path, search::SearchResultPtr& root);
 };
 
 

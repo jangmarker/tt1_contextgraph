@@ -3,6 +3,7 @@
 #include <set>
 #include <stack>
 #include <string_view>
+#include <fstream>
 
 namespace {
     using namespace gml_generation;
@@ -74,4 +75,10 @@ std::ostream& gml_generation::operator<<(std::ostream& stream, const Node& node)
     stream << "  ]" << std::endl;
 
     return stream;
+}
+
+void gml_generation::writeToFile(const std::experimental::filesystem::path& path, search::SearchResultPtr& root)
+{
+    std::ofstream stream(path);
+    stream << root;
 }
