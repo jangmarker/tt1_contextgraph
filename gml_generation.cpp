@@ -16,6 +16,31 @@ namespace {
             createEdgesNodes(neighbor, edges, nodes);
         }
     }
+
+    std::set<Node> createNodes(search::SearchResultPtr& root, std::size_t depth)
+    {
+        std::set<Node> nodes;
+        nodes.emplace(root->word);
+        if (depth > 0) {
+            for (auto& neighbor : root->neighbors) {
+                nodes.merge(createNodes(neighbor, depth - 1));
+            }
+        }
+        return nodes;
+    }
+
+    std::set<Edge> createEdges(search::SearchResultPtr& root, const std::set<Node>& nodes, std::size_t depth)
+    {
+        std::set<Edge> edges;
+        for (auto& neighbor : root->neighbors) {
+            if (depth > 0 || nodes.find(Node{neighbor->word}) != nodes.end()) {
+                edges.emplace(Edge{root->word, neighbor->word});
+            }
+            edges.merge(createEdges(neighbor, nodes, depth - 1));
+        }
+        return edges;
+
+    }
 }
 
 Node::Node(std::string_view l)
@@ -36,13 +61,10 @@ bool gml_generation::operator<(const gml_generation::Node& lhs, const gml_genera
     return lhs.label < rhs.label;
 }
 
-std::ostream& gml_generation::operator<<(std::ostream& stream, search::SearchResultPtr& root)
+std::ostream& gml_generation::operator<<(std::ostream& stream, const gml_generation::Graph& graph)
 {
-    std::set<Edge> edges;
-    std::set<Node> nodes;
-
-    createEdgesNodes(root, &edges, &nodes);
-
+    std::set<Node> nodes = createNodes(graph.root, graph.depth);
+    std::set<Edge> edges = createEdges(graph.root, nodes, graph.depth);
 
     stream << "graph [" << std::endl;
     stream << "  directed 0" << std::endl;
@@ -77,8 +99,8 @@ std::ostream& gml_generation::operator<<(std::ostream& stream, const Node& node)
     return stream;
 }
 
-void gml_generation::writeToFile(const std::experimental::filesystem::path& path, search::SearchResultPtr& root)
+void gml_generation::writeToFile(const std::experimental::filesystem::path& path, const gml_generation::Graph& graph)
 {
     std::ofstream stream(path);
-    stream << root;
+    stream << graph;
 }

@@ -69,12 +69,17 @@ int cli(int argc, char** argv, std::ostream& ostream)
         Phase phase("Searching", ostream);
         res = search::search(db, options.searchTerm,
                              search::NeighborCount(options.neighborCount),
-                             search::Depth(options.depth));
+                             search::Depth(options.depth + 1)); // the depth is increased by one to know about
+                                                                // connections between leaf nodes and other
+                                                                // existing nodes
+                                                                // for leaf nodes, the graph generation algorithm
+                                                                // will only create edges that point to already
+                                                                // existing nodes
     }
 
     {
         Phase phase("Writing GML", ostream);
-        gml_generation::writeToFile(fs::path(options.outputFile), res);
+        gml_generation::writeToFile(fs::path(options.outputFile), gml_generation::Graph{res, options.depth});
     }
 
     return 0;

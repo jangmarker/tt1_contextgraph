@@ -20,11 +20,16 @@ namespace gml_generation
     };
     bool operator<(const Node& lhs, const Node& rhs);
 
-    std::ostream& operator<<(std::ostream& stream, search::SearchResultPtr& root);
+    struct Graph {
+        search::SearchResultPtr& root;
+        std::size_t depth;
+    };
+
+    std::ostream& operator<<(std::ostream& stream, const gml_generation::Graph& graph);
     std::ostream& operator<<(std::ostream& stream, const Edge& edge);
     std::ostream& operator<<(std::ostream& stream, const Node& node);
 
-    void writeToFile(const std::experimental::filesystem::path& path, search::SearchResultPtr& root);
+    void writeToFile(const std::experimental::filesystem::path& path, const gml_generation::Graph& root);
 };
 
 

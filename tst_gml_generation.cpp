@@ -124,7 +124,7 @@ TEST_CASE("GML generation")
 
     SECTION("only root node") {
         auto res = make_searchresult("picard");
-        stream << res;
+        stream << Graph{res, 0};
 
         REQUIRE(read(stream) == onlyRootGml);
     }
@@ -135,7 +135,7 @@ TEST_CASE("GML generation")
                                        make_searchresult("riker"),
                                        make_searchresult("data")
                                     ));
-        stream << res;
+        stream << Graph{res, 1};
 
         REQUIRE(read(stream) == rootTwoNeighborsGml);
     }
@@ -156,7 +156,7 @@ TEST_CASE("GML generation")
                                          )
                                        )
                                      ));
-        stream << res;
+        stream << Graph{res, 2};
 
         REQUIRE(read(stream) == twoNeighborsDepth2Gml);
     }
@@ -170,7 +170,7 @@ TEST_CASE("GML generation")
                                          )
                                        )
                                      ));
-        stream << res;
+        stream << Graph{res, 2};
 
         REQUIRE(read(stream) == rootWithCircleGml);
     }
