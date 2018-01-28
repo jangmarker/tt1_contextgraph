@@ -41,7 +41,7 @@ TEST_CASE("search")
         REQUIRE(res->neighbors.size() == 1);
         REQUIRE(res->neighbors[0]->word == "riker");
         REQUIRE(res->neighbors[0]->neighbors.size() == 1);
-        REQUIRE(res->neighbors[0]->neighbors[0]->word == "picard");
+        REQUIRE(res->neighbors[0]->neighbors[0]->word == "archer");
         REQUIRE(res->neighbors[0]->neighbors[0]->neighbors.empty());
     }
 }

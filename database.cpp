@@ -6,7 +6,7 @@ namespace
         double topSum = 0.0;
 
         for (int i = 0; i < lhs.values.size(); ++i) {
-            topSum = lhs.values[i] * rhs.values[i];
+            topSum += lhs.values[i] * rhs.values[i];
         }
 
         return topSum / (lhs.euclideanNorm * rhs.euclideanNorm);
