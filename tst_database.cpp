@@ -27,4 +27,9 @@ TEST_CASE("most similar")
         auto similar = db.most_similar("picard", 5);
         REQUIRE(similar.size() == 2);
     }
+
+    SECTION("query non-existent") {
+        auto similar = db.most_similar("this does not exist", 100);
+        REQUIRE(similar.empty());
+    }
 }
