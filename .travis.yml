@@ -7,6 +7,9 @@ addons:
       - g++-7
       - lcov
 
+git:
+  lfs_skip_smudge: true
+
 install:
   # taken from https://github.com/Microsoft/GSL/blob/9d65e74400976b3509833f49b16d401600c7317d/.travis.yml#L189
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"

@@ -1,5 +1,8 @@
 image: Visual Studio 2017
 
+environment:
+  GIT_LFS_SKIP_SMUDGE: 1
+
 install:
   - ps: Set-Culture de-DE
 
