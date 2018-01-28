@@ -8,15 +8,6 @@
 namespace {
     using namespace gml_generation;
 
-    void createEdgesNodes(search::SearchResultPtr& root, std::set<Edge>* edges, std::set<Node>* nodes)
-    {
-        nodes->emplace(root->word);
-        for (auto& neighbor : root->neighbors) {
-            edges->emplace(Edge{root->word, neighbor->word});
-            createEdgesNodes(neighbor, edges, nodes);
-        }
-    }
-
     std::set<Node> createNodes(search::SearchResultPtr& root, std::size_t depth)
     {
         std::set<Node> nodes;

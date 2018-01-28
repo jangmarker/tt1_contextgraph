@@ -49,5 +49,4 @@ create_test(file_access)
 create_test(database)
 create_test(search)
 create_test(gml_generation)
-create_test(cli)
 # NOTE don't forget to add command to .appveyor.yml

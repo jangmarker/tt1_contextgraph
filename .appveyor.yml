@@ -21,7 +21,6 @@ on_finish:
   - appveyor PushArtifact tst_database-junit.xml
   - appveyor PushArtifact tst_search-junit.xml
   - appveyor PushArtifact tst_gml_generation-junit.xml
-  - appveyor PushArtifact tst_cli-junit.xml
 
 artifacts:
   - path: 'build\Debug\*tt1*.exe'
