@@ -8,8 +8,8 @@
 
 namespace file_access
 {
-    Database databaseFromFile(const std::experimental::filesystem::path& path);
-    Database databaseFromIStream(std::istream& fileStream);
+    Database databaseFrom(const std::experimental::filesystem::path& path);
+    Database databaseFrom(std::istream& fileStream);
 
     struct VectorCounts {
         std::size_t vector = 0;

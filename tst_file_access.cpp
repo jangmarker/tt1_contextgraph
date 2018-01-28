@@ -3,6 +3,8 @@
 #include "file_access.h"
 
 #include <cmath>
+#include <fstream>
+#include <experimental/filesystem>
 
 using namespace file_access;
 
@@ -42,11 +44,24 @@ das 0.7 0.8 0.9
 wer 0.0 0.1 0.2
 )");
 
-    Database db = databaseFromIStream(stream);
+    Database db = databaseFrom(stream);
 
     REQUIRE(db.vectors().size() == 4);
     REQUIRE(db.vectors()[0].word == "der");
     REQUIRE(db.vectors()[0].values == std::vector<double>{0.1, 0.2, 0.3});
     REQUIRE(db.vectors()[3].word == "wer");
     REQUIRE(db.vectors()[3].values == std::vector<double>{0.0, 0.1, 0.2});
+}
+
+TEST_CASE("read database from file")
+{
+    namespace fs = std::experimental::filesystem;
+    fs::path self(__FILE__);
+    fs::path directory = self.parent_path();
+
+    auto db = file_access::databaseFrom(directory / "embeddings" / "test.txt");
+
+    REQUIRE(db.vectors().size() == 3);
+    REQUIRE(db.vectors()[0].word == "picard");
+    REQUIRE(db.vectors()[0].values == std::vector<double>{0.1, 0.2});
 }

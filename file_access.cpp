@@ -3,13 +3,13 @@
 
 #include "file_access.h"
 
-Database file_access::databaseFromFile(const std::experimental::filesystem::path& path)
+Database file_access::databaseFrom(const std::experimental::filesystem::path& path)
 {
     std::ifstream fileStream(path);
-    return databaseFromIStream(fileStream);
+    return databaseFrom(fileStream);
 }
 
-Database file_access::databaseFromIStream(std::istream& fileStream)
+Database file_access::databaseFrom(std::istream& fileStream)
 {
     VectorCounts counts;
     fileStream >> counts;
