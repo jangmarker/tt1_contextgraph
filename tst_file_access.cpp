@@ -41,7 +41,7 @@ R"(
 der 0.1 0.2 0.3
 die 0.4 0.5 0.6
 das 0.7 0.8 0.9
-wer 0.0 0.1 0.2
+wer 0.0 0.1 -0.2
 )");
 
     Database db = databaseFrom(stream);
@@ -50,7 +50,7 @@ wer 0.0 0.1 0.2
     REQUIRE(db.vectors()[0].word == "der");
     REQUIRE(db.vectors()[0].values == std::vector<double>{0.1, 0.2, 0.3});
     REQUIRE(db.vectors()[3].word == "wer");
-    REQUIRE(db.vectors()[3].values == std::vector<double>{0.0, 0.1, 0.2});
+    REQUIRE(db.vectors()[3].values == std::vector<double>{0.0, 0.1, -0.2});
 }
 
 TEST_CASE("read database from file")
