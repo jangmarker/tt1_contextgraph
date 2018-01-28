@@ -23,7 +23,11 @@ Node::Node(std::string_view l)
 
 bool gml_generation::operator<(const gml_generation::Edge& lhs, const gml_generation::Edge& rhs)
 {
-    return lhs.source == rhs.source ? lhs.target < rhs.target : lhs.source < rhs.source;
+    std::string_view rhsLower = rhs.source < rhs.target ? rhs.source : rhs.target;
+    std::string_view rhsHigher = rhs.source < rhs.target ? rhs.target : rhs.source;
+    std::string_view lhsLower = lhs.source < lhs.target ? lhs.source : lhs.target;
+    std::string_view lhsHigher = lhs.source < lhs.target ? lhs.target : lhs.source;
+    return lhsLower == rhsLower ? lhsHigher < rhsHigher : lhsLower < rhsLower;
 }
 
 bool gml_generation::operator<(const gml_generation::Node& lhs, const gml_generation::Node& rhs)

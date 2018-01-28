@@ -76,12 +76,16 @@ R"(graph [
     target "dax"
   ]
   edge [
+    source "picard"
+    target "data"
+  ]
+  edge [
     source "data"
     target "trip"
   ]
   edge [
-    source "picard"
-    target "data"
+    source "riker"
+    target "kira"
   ]
   edge [
     source "picard"
@@ -89,11 +93,25 @@ R"(graph [
   ]
   edge [
     source "riker"
-    target "kira"
+    target "saru"
+  ]
+]
+)";
+
+static const std::string_view rootWithCircleGml =
+R"(graph [
+  directed 0
+  node [
+    id "archer"
+    label "archer"
+  ]
+  node [
+    id "picard"
+    label "picard"
   ]
   edge [
-    source "riker"
-    target "saru"
+    source "picard"
+    target "archer"
   ]
 ]
 )";
@@ -141,5 +159,19 @@ TEST_CASE("GML generation")
         stream << res;
 
         REQUIRE(read(stream) == twoNeighborsDepth2Gml);
+    }
+
+    SECTION("root with circle") {
+        auto res = make_searchresult("picard",
+                                     make_neighbors(
+                                       make_searchresult("archer",
+                                         make_neighbors(
+                                           make_searchresult("picard")
+                                         )
+                                       )
+                                     ));
+        stream << res;
+
+        REQUIRE(read(stream) == rootWithCircleGml);
     }
 }
