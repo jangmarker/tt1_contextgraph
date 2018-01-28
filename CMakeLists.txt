@@ -22,7 +22,7 @@ if (DEFINED ENV{TRAVIS})
     set(CMAKE_BUILD_TYPE "DEBUG")
 endif()
 
-set(SOURCE_FILES database.h database.cpp file_access.cpp file_access.h vector.cpp vector.h search.cpp search.h)
+set(SOURCE_FILES database.h database.cpp file_access.cpp file_access.h vector.cpp vector.h search.cpp search.h gml_generation.cpp gml_generation.h)
 add_library(libtt1_contextgraph ${SOURCE_FILES})
 
 add_executable(tt1_contextgraph main.cpp 3rdparty/CLI11.hpp)
@@ -48,4 +48,5 @@ enable_testing()
 create_test(file_access)
 create_test(database)
 create_test(search)
+create_test(gml_generation)
 # NOTE don't forget to add command to .appveyor.yml
