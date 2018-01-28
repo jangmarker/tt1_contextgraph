@@ -31,7 +31,7 @@ namespace search {
         Neighbors neighbors;
     };
 
-    SearchResultPtr search(const Database& db, const Word& word, NeighborCount neighborCount, Depth depth);
+    SearchResultPtr search(const Database& db, WordView word, NeighborCount neighborCount, Depth depth);
 };
 
 

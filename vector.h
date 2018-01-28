@@ -5,6 +5,7 @@
 #include <vector>
 
 using Word = std::string;
+using WordView = std::string_view;
 
 struct Vector {
     explicit Vector(std::size_t valueCount);

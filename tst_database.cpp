@@ -20,7 +20,7 @@ TEST_CASE("most similar")
     SECTION("query multiple") {
         auto similar = db.most_similar("picard", 2);
         REQUIRE(similar.size() == 2);
-        REQUIRE(similar == std::vector<std::string>{"riker", "archer"});
+        REQUIRE(similar == std::vector<WordView>{"riker", "archer"});
     }
 
     SECTION("query more than available") {

@@ -9,14 +9,14 @@
 namespace gml_generation
 {
     struct Edge {
-        std::string_view source;
-        std::string_view target;
+        WordView source;
+        WordView target;
     };
     bool operator<(const Edge& lhs, const Edge& rhs);
 
     struct Node {
         explicit Node(std::string_view l);
-        std::string_view label;
+        WordView label;
     };
     bool operator<(const Node& lhs, const Node& rhs);
 

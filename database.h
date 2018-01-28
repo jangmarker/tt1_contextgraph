@@ -13,11 +13,11 @@ public:
     void set_vectors(std::vector<Vector>&& vectors);
     const std::vector<Vector>& vectors() const;
 
-    std::vector<Word> most_similar(Word word, size_t topCount) const;
+    std::vector<WordView> most_similar(WordView word, size_t topCount) const;
 
 private:
     std::vector<Vector> m_vectors;
-    std::map<std::string, Vector*> m_nameToVec;
+    std::map<WordView, Vector*> m_nameToVec;
 };
 
 

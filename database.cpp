@@ -12,10 +12,10 @@ namespace
         return topSum / (lhs.euclideanNorm * rhs.euclideanNorm);
     }
 
-    std::multimap<double, Word> compare_to_vectors(const Vector& searchVector,
+    std::multimap<double, WordView> compare_to_vectors(const Vector& searchVector,
                                                    const std::vector<Vector>& vectors)
     {
-        std::multimap<double, Word> wordsByIncSim;
+        std::multimap<double, WordView> wordsByIncSim;
 
         for (const auto& otherVector : vectors) {
             if (otherVector == searchVector) {
@@ -51,7 +51,7 @@ void Database::set_vectors(std::vector<Vector>&& vectors)
     }
 }
 
-std::vector<Word> Database::most_similar(Word word, size_t topCount) const
+std::vector<WordView> Database::most_similar(WordView word, size_t topCount) const
 {
     if (m_nameToVec.find(word) == m_nameToVec.end())
         return {};
