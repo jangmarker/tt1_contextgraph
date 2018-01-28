@@ -29,7 +29,7 @@ namespace
     }
 
     template<typename KeyT, typename ValueT>
-    std::vector<ValueT> pick_top(const std::multimap<KeyT, ValueT> values, std::size_t topCount)
+    std::vector<ValueT> pick_top(const std::multimap<KeyT, ValueT>& values, std::size_t topCount)
     {
         std::vector<ValueT> result;
         result.reserve(topCount);
