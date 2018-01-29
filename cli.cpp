@@ -36,7 +36,7 @@ int cli(int argc, char** argv, std::ostream& ostream)
     CLI::App app{"Text Technologie 1 - Aufgabe 5 - Lösung Jan Marker"};
 
     static struct {
-        std::string databaseFile = "./embeddings/embedding_cbow.vec"s;
+        std::string databaseFile;
         std::string outputFile;
         std::string searchTerm;
         std::size_t neighborCount;
@@ -45,7 +45,7 @@ int cli(int argc, char** argv, std::ostream& ostream)
 
     app.add_option("-i", options.databaseFile, "Path to the vector file.")
             ->check(CLI::ExistingFile)
-            ->mandatory(false);
+            ->mandatory(true);
     app.add_option("-o", options.outputFile, "Path to the output GML file.")
             ->mandatory(true);
     app.add_option("-s", options.searchTerm, "Search term.")
